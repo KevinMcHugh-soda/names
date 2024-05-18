@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  names_api:
+    build:
+      context: .
+    ports:
+      - "8080:8080"  # Expose port 8080 of the container
+    depends_on:
+      - names_postgres
+
+  names_postgres:
+    build:
+      context: .
+      dockerfile: postgres.Dockerfile
+    ports:
+      - "5432:5432"  # Expose port 5432 of the container
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
