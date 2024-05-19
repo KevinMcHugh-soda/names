@@ -7,9 +7,20 @@ services:
     ports:
       - "8080:8080"  # Expose port 8080 of the container
     depends_on:
-      - names_postgres
+      - db
 
-  names_postgres:
+  migrate:
+    image: amacneil/dbmate:latest
+    command: ["up"]
+    depends_on:
+      - db
+    volumes:
+      - ./db:/db
+    environment:
+      DATABASE_URL: postgres://names:names@db:5432/namesdb?sslmode=disable
+    restart: on-failure
+
+  db:
     build:
       context: .
       dockerfile: postgres.Dockerfile
