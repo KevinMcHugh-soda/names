@@ -4,5 +4,5 @@ TODO:
 * ~~set up docker~~
 * ~~setup hello world~~
 * ~~set up database~~
-* setup sqlc
+* ~~setup sqlc~~
 * set up openapi

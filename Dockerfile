@@ -8,10 +8,11 @@ WORKDIR /app
 COPY go.* ./
 
 # Download all dependencies
-# RUN go mod download
+RUN go mod download
 
 # Copy the source code into the container
 COPY *.go .
+COPY ./db ./db
 
 # Build the Go app
 RUN CGO_ENABLED=0 go build -o names-api .
